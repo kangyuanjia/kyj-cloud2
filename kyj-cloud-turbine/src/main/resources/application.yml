@@ -1,0 +1,22 @@
+server:
+  port: 8900
+eureka:
+  client:
+    service-url:
+      defaultZone: http://kyj:kyj123@127.0.0.1:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+turbine:
+  aggregator:
+    clusterConfig: default
+  appConfig: kyj-cloud-consumer
+  clusterNameExpression: "'default'"
+spring:
+  application:
+    name: kyj-cloud-dashboard
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'

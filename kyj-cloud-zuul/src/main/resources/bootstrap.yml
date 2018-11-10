@@ -1,0 +1,25 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://kyj:kyj123@127.0.0.1:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+
+spring:
+  zipkin:
+    base-url: http://127.0.0.1:9411
+  sleuth:
+    sampler:
+      probability: 1.0
+  application:
+    name: kyj-cloud-zuul
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: kyj-cloud-config
+      fail-fast: true
+      username: kyj
+      password: kyj123
+      profile: dev

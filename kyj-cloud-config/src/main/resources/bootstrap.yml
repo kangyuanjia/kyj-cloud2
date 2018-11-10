@@ -1,0 +1,25 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://kyj:kyj123@127.0.0.1:8761/eureka/
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+    prefer-ip-address: true
+    
+server:
+  port: 9200
+spring:
+  application:
+    name: kyj-cloud-config
+  cloud:
+    config:
+      server:
+        git:
+          username: kangyuanjia
+          password: jkl;'225
+          uri: https://github.com/kangyuanjia/springcloud-config-profile/
+          search-paths: '{application}'
+  security:
+    user:
+      name: kyj
+      password: kyj123

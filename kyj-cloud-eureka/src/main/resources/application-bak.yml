@@ -1,0 +1,46 @@
+---
+spring:
+  application:
+    name: kyj-cloud-eureka
+  profiles: peer1
+server:
+  port: 8761 #官方写的就是 8761
+eureka:
+  instance:
+    hostname: peer1  #配置主机名
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://peer2:8762/eureka/,http://peer3:8763/eureka/
+---
+spring:
+  application:
+    name: kyj-cloud-eureka
+  profiles: peer2
+server:
+  port: 8762
+eureka:
+  instance:
+    hostname: peer2
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:8761/eureka/,http://peer3:8763/eureka/
+---
+spring:
+  application:
+    name: kyj-cloud-eureka
+  profiles: peer3
+server:
+  port: 8763
+eureka:
+  instance:
+    hostname: peer3
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:8761/eureka/,http://peer2:8762/eureka/
+  

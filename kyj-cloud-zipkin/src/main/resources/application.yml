@@ -1,0 +1,19 @@
+server:
+  port: 9411
+spring:
+  application:
+    name: kyj-cloud-zipkin
+  profiles:
+    active: dev
+eureka:
+  client:
+    service-url:
+      defaultZone: http://kyj:kyj123@127.0.0.1:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+management:
+  metrics:
+    web:
+      server:
+        auto-time-requests: false
